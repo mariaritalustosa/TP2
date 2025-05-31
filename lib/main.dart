@@ -8,8 +8,8 @@ import 'package:tp2/providers/theme_provider.dart';
 void main() {
   runApp(
     MultiProvider(providers: [
-    ChangeNotifierProvider(create: () => TelaAtualProvider()),
-    ChangeNotifierProvider(create: () => ThemeProvider()),
+    ChangeNotifierProvider(create: (_) => TelaAtualProvider()),
+    ChangeNotifierProvider(create: (_) => ThemeProvider()),
   ],
     child: const MyApp(),
   ),
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'CRUD de compras e vendas de Produtos',
       theme: AppTheme.lightTheme,
       darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
+      themeMode: themeProvider.themeMode,
       home: const TelaPrincipal(),
     );
   }
