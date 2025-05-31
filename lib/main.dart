@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tp2/providers/tela_atual_provider.dart';
 import 'package:tp2/screens/tela_principal.dart';
+import 'package:tp2/themes/themes.dart';
+import 'package:tp2/providers/theme_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: 
-  (_) => TelaAtualProvider(),
-  child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(providers: [
+    ChangeNotifierProvider(create: () => TelaAtualProvider()),
+    ChangeNotifierProvider(create: () => ThemeProvider()),
+  ],
+    child: const MyApp(),
+  ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,9 +21,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       title: 'CRUD de compras e vendas de Produtos',
-      theme: ThemeData.light(),
+      theme: AppTheme.lightTheme,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
       home: const TelaPrincipal(),
