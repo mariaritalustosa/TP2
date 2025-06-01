@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TelaAtualProvider extends ChangeNotifier{
+class TelaAtualProvider with ChangeNotifier{
   int _indice = 0;
 
   int get indice => _indice;
