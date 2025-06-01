@@ -17,7 +17,26 @@ class ProdutosScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if
+          if (snapshot.hasError){
+            return Center(child: Text('Erro ao carregar os produtos: ${snapshot.error}'),);
+          }
+
+          final produtos = snapshot.data ?? [];
+
+          if(produtos.isEmpty){
+            return const Center(child: Text('Nenhum produto cadastrado.'),);
+          }
+
+          return LayoutBuilder(
+            builder: (context, constraints){
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                itemCount: produtos.length,
+                itemBuilder: (context, index){
+                  final produto = produtos[index];
+                },
+              )
+            })
         }
         ),
     );
