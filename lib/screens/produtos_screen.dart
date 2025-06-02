@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tp2/database/app_database.dart';
 import 'package:drift/drift.dart' as drift;
+import 'package:tp2/screens/tela_principal.dart';
 
 
 class ProdutosScreen extends StatefulWidget {
@@ -33,6 +34,13 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);
+          }
+        ),
+      ),
       body: FutureBuilder<List<Produto>>(
         future: produtosFuture,
         builder: (context, snapshot) {

@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      title: 'CRUD de compras e vendas de Produtos',
       theme: AppTheme.lightTheme,
       darkTheme: ThemeData.dark(),
       themeMode: themeProvider.themeMode,
