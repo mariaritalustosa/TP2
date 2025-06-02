@@ -34,10 +34,38 @@ class ProdutosScreen extends StatelessWidget {
                 itemCount: produtos.length,
                 itemBuilder: (context, index){
                   final produto = produtos[index];
+
+                  return Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      title: Text(produto.nome),
+                      subtitle: Text('R\$ ${produto.preco.toStringAsFixed(2)}'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(icon: const Icon(Icons.edit),
+                          onPressed: (){
+
+
+                          },),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () async{
+                              await database.deleteProduto(produto.id);
+                              if(context.mounted){
+                                Navigator.of(context);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
-              )
-            })
-        }
+              );
+            },
+            );
+        },
         ),
     );
   }

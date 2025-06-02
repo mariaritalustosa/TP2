@@ -9,10 +9,10 @@ class TelaPrincipal extends StatelessWidget{
 
   final List<Widget> _telas = const [
     ProdutosScreen(),
-    //ClientesScreen(),
-    //VendedoresScreen(),
-    //MovimentacoesScreen(),
-    //GraficosScreen(),
+    ClientesScreen(),
+    VendedoresScreen(),
+    MovimentacoesScreen(),
+    GraficosScreen(),
   ];
 
   final List<String> _titulos = const[
