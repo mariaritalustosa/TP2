@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tp2/database/app_database.dart';
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' as drift;
 
-class ProdutosScreen extends StatelessWidget {
+class ProdutosScreen extends StatefulWidget {
   const ProdutosScreen({super.key});
 
   @override
+
+  State<ProdutosScreen> createState() => _ProdutosScreenState();
+
+class _ProdutosScreenState extends State<ProdutosScreen>{
+
+  late AppDatabase database;
+  late Future <List<Produto>> produtosFuture;
   Widget build(BuildContext context) {
     final database = Provider.of<AppDatabase>(context);
     return Scaffold(
@@ -44,16 +51,64 @@ class ProdutosScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(icon: const Icon(Icons.edit),
-                          onPressed: (){
+                          onPressed: () async{
+                            final nomeController = TextEditingController(text: produto.nome);
+                            final precoController = TextEditingController(text: produto.preco.toString());
 
+                            final confirmado = await showDialog<bool>(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Editar informações do produto'),
+                                content: Column(mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextField(
+                                    controller: nomeController,
+                                    decoration: const InputDecoration(labelText: 'Nome'),
+                                  ),
+                                  TextField(
+                                    controller: precoController,
+                                    decoration: const InputDecoration(labelText: 'Preço'),
+                                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                                  ),
+                                ],
+                                ),
+                                actions: [
+                                  TextButton(onPressed: () => Navigator.pop(context, false),
+                                   child: Text('Cancelar'),
+                                   ),
+                                   ElevatedButton(onPressed: () async{
+                                    final novoNome = nomeController.text;
+                                    final novoPreco = double.tryParse(precoController.text) ?? produto.preco;
 
+                                    final db = Provider.of<AppDatabase>(context, listen: false);
+
+                                    final produtoAtualizado = Produto(id: 
+                                    produto.id,
+                                    nome: novoNome, 
+                                    preco: novoPreco,
+                                    );
+
+                                    await db.updateProduto(produtoAtualizado);
+                                    Navigator.pop(context, true);
+                                   },
+                                   child: Text('Salvar'),
+                                   ),
+                                ],
+                              ),
+                            );
+
+                            if(confirmado == true){
+                              setState((){
+
+                              });
+                            }
                           },),
                           IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () async{
                               await database.deleteProduto(produto.id);
                               if(context.mounted){
-                                Navigator.of(context);
+                                Navigator.of(context).pop();
                               }
                             },
                           ),
