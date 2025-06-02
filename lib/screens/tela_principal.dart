@@ -32,22 +32,43 @@ class TelaPrincipal extends StatelessWidget{
           ListTile(
             leading: Icon(Icons.inventory),
             title: Text('Produtos'),
-            BottomNavigationBarItem(icon: Icon(Icons.person),
-            label: 'Clientes',
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.store),
-            label: 'Vendedores',
-            ),
-          BottomNavigationBarItem(icon: 
-          Icon(Icons.swap_horiz),
-          label: 'Movimentações',
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ProdutosScreen()),
+              );
+            },
           ),
-          BottomNavigationBarItem(icon: 
-          Icon(Icons.bar_chart),
-          label: 'Gráficos',
+            ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Clientes'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ClientesScreen()),
+              );
+            },
           ),
-        ],
-        type: BottomNavigationBarType.fixed,
+          ListTile(
+            leading: Icon(Icons.store),
+            title: Text('Vendedores'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => VendedoresScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.swap_horiz),
+            title: Text('Movimentações'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ClientesScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Clientes'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ClientesScreen()),
+              );
+            },
+          ),
       ),
     );
   }
