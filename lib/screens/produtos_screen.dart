@@ -3,22 +3,38 @@ import 'package:provider/provider.dart';
 import 'package:tp2/database/app_database.dart';
 import 'package:drift/drift.dart' as drift;
 
+
 class ProdutosScreen extends StatefulWidget {
   const ProdutosScreen({super.key});
 
   @override
 
-  State<ProdutosScreen> createState() => _ProdutosScreenState();
+State<ProdutosScreen> createState() => _ProdutosScreenState();
+}
 
 class _ProdutosScreenState extends State<ProdutosScreen>{
 
   late AppDatabase database;
   late Future <List<Produto>> produtosFuture;
+
+  @override
+  void initState(){
+    super.initState();
+    database = Provider.of<AppDatabase>(context, listen: false);
+    _carregarProdutos();
+  }
+
+  void _carregarProdutos(){
+    setState((){
+      produtosFuture = database.getAllProdutos();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final database = Provider.of<AppDatabase>(context);
     return Scaffold(
       body: FutureBuilder<List<Produto>>(
-        future: database.getAllProdutos(), 
+        future: produtosFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator());
@@ -98,18 +114,14 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
                             );
 
                             if(confirmado == true){
-                              setState((){
-
-                              });
+                              _carregarProdutos();
                             }
                           },),
                           IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () async{
                               await database.deleteProduto(produto.id);
-                              if(context.mounted){
-                                Navigator.of(context).pop();
-                              }
+                              _carregarProdutos();
                             },
                           ),
                         ],
@@ -124,6 +136,4 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
         ),
     );
   }
- 
-
 }
