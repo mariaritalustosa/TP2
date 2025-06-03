@@ -83,58 +83,51 @@ class _ClientesScreenState extends State<ClientesScreen>{
           }
         ),
       ),
-      body: FutureBuilder<List<Produto>>(
-        future: produtosFuture,
+      body: FutureBuilder<List<Cliente>>(
+        future: clientesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError){
-            return Center(child: Text('Erro ao carregar os produtos: ${snapshot.error}'),);
+            return Center(child: Text('Erro ao carregar os clientes: ${snapshot.error}'),);
           }
 
-          final produtos = snapshot.data ?? [];
+          final clientes = snapshot.data ?? [];
 
-          if(produtos.isEmpty){
-            return const Center(child: Text('Nenhum produto cadastrado.'),);
+          if(clientes.isEmpty){
+            return const Center(child: Text('Nenhum cliente foi cadastrado.'),);
           }
 
           return LayoutBuilder(
             builder: (context, constraints){
               return ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                itemCount: produtos.length,
+                itemCount: clientes.length,
                 itemBuilder: (context, index){
-                  final produto = produtos[index];
+                  final clientes = clientes[index];
 
                   return Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
-                      title: Text(produto.nome),
-                      subtitle: Text('R\$ ${produto.preco.toStringAsFixed(2)}'),
+                      title: Text(clientes.nome),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(icon: const Icon(Icons.edit),
                           onPressed: () async{
-                            final nomeController = TextEditingController(text: produto.nome);
-                            final precoController = TextEditingController(text: produto.preco.toString());
+                            final nomeController = TextEditingController(text: clientes.nome);
 
                             final confirmado = await showDialog<bool>(
                               context: context,
                               builder: (context) => AlertDialog(
-                                title: Text('Editar informações do produto'),
+                                title: Text('Editar informações do cliente'),
                                 content: Column(mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextField(
                                     controller: nomeController,
                                     decoration: const InputDecoration(labelText: 'Nome'),
-                                  ),
-                                  TextField(
-                                    controller: precoController,
-                                    decoration: const InputDecoration(labelText: 'Preço'),
-                                    keyboardType: TextInputType.numberWithOptions(decimal: true),
                                   ),
                                 ],
                                 ),
