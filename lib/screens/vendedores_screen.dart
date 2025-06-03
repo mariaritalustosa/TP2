@@ -15,18 +15,18 @@ State<VendedoresScreen> createState() => _VendedoresScreenState();
 class _VendedoresScreenState extends State<VendedoresScreen>{
 
   late AppDatabase database;
-  late Future <List<Produto>> produtosFuture;
+  late Future <List<Vendedore>> vendedoresFuture;
 
   @override
   void initState(){
     super.initState();
     database = Provider.of<AppDatabase>(context, listen: false);
-    _carregarProdutos();
+    _carregarVendedores();
   }
 
-  void _carregarProdutos(){
+  void _carregarVendedores(){
     setState((){
-      produtosFuture = database.getAllProdutos();
+      vendedoresFuture = database.getAllVendedores();
     });
   }
 
