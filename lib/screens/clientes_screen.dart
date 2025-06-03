@@ -16,22 +16,22 @@ State<ClientesScreen> createState() => _ClientesScreenState();
 class _ClientesScreenState extends State<ClientesScreen>{
 
   late AppDatabase database;
-  late Future <List<Produto>> produtosFuture;
+  late Future <List<Cliente>> clientesFuture;
 
   @override
   void initState(){
     super.initState();
     database = Provider.of<AppDatabase>(context, listen: false);
-    _carregarProdutos();
+    _carregarClientes();
   }
 
-  void _carregarProdutos(){
+  void _carregarClientes(){
     setState((){
-      produtosFuture = database.getAllProdutos();
+      clientesFuture = database.getAllClientes();
     });
   }
 
-  Future<void> _adicionarProduto() async {
+  Future<void> _adicionarCliente() async {
     final nomeController = TextEditingController();
     final precoController = TextEditingController();
 
