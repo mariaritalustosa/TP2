@@ -82,6 +82,7 @@ class _ClientesScreenState extends State<ClientesScreen>{
           onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);
           }
         ),
+        title: Text('Clientes'),
       ),
       body: FutureBuilder<List<Cliente>>(
         future: clientesFuture,
@@ -100,88 +101,26 @@ class _ClientesScreenState extends State<ClientesScreen>{
             return const Center(child: Text('Nenhum cliente foi cadastrado.'),);
           }
 
-          return LayoutBuilder(
-            builder: (context, constraints){
-              return ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                itemCount: clientes.length,
-                itemBuilder: (context, index){
-                  final clientes = clientes[index];
-
+          return ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            itemCount: clientes.length,
+            itemBuilder: (context, index){
+              final cliente = clientes[index];
                   return Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
-                      title: Text(clientes.nome),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(icon: const Icon(Icons.edit),
-                          onPressed: () async{
-                            final nomeController = TextEditingController(text: clientes.nome);
-
-                            final confirmado = await showDialog<bool>(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('Editar informações do cliente'),
-                                content: Column(mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: nomeController,
-                                    decoration: const InputDecoration(labelText: 'Nome'),
-                                  ),
-                                ],
-                                ),
-                                actions: [
-                                  TextButton(onPressed: () => Navigator.pop(context, false),
-                                   child: Text('Cancelar'),
-                                   ),
-                                   ElevatedButton(onPressed: () async{
-                                    final novoNome = nomeController.text;
-                                    final novoPreco = double.tryParse(precoController.text) ?? produto.preco;
-
-                                    final db = Provider.of<AppDatabase>(context, listen: false);
-
-                                    final produtoAtualizado = Produto(id: 
-                                    produto.id,
-                                    nome: novoNome, 
-                                    preco: novoPreco,
-                                    );
-
-                                    await db.updateProduto(produtoAtualizado);
-                                    Navigator.pop(context, true);
-                                   },
-                                   child: Text('Salvar'),
-                                   ),
-                                ],
-                              ),
-                            );
-
-                            if(confirmado == true){
-                              _carregarProdutos();
-                            }
-                          },),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () async{
-                              await database.deleteProduto(produto.id);
-                              _carregarProdutos();
-                            },
-                          ),
-                        ],
-                      ),
+                      title: Text('ID: ${cliente.id} - ${cliente.nome}'),
                     ),
                   );
-                },
-              );
             },
-            );
+          );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _adicionarProduto,
+        floatingActionButton: FloatingActionButton(
+        onPressed: _adicionarCliente,
         child: Icon(Icons.add),
-        tooltip: 'Adicionar Produtos',
+        tooltip: 'Adicionar Clientes ao Banco de Dados',
       ),
-    );
+      );
   }
 }

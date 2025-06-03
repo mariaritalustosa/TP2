@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tp2/providers/tela_atual_provider.dart';
 import 'package:tp2/providers/theme_provider.dart';
 import 'package:tp2/screens/produtos_screen.dart';
+import 'clientes_screen.dart';
 
 class TelaPrincipal extends StatefulWidget{
   const TelaPrincipal({super.key});
@@ -42,7 +43,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
-           /** ListTile(
+           ListTile(
             leading: Icon(Icons.person),
             title: Text('Clientes'),
             onTap: (){
@@ -50,6 +51,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
+          /** 
           ListTile(
             leading: Icon(Icons.store),
             title: Text('Vendedores'),
