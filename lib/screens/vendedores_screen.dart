@@ -83,21 +83,21 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
           }
         ),
       ),
-      body: FutureBuilder<List<Produto>>(
-        future: produtosFuture,
+      body: FutureBuilder<List<Vendedore>>(
+        future: vendedoresFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting){
             return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError){
-            return Center(child: Text('Erro ao carregar os produtos: ${snapshot.error}'),);
+            return Center(child: Text('Erro ao carregar os vendedores ${snapshot.error}'),);
           }
 
-          final produtos = snapshot.data ?? [];
+          final vendedores = snapshot.data ?? [];
 
-          if(produtos.isEmpty){
-            return const Center(child: Text('Nenhum produto cadastrado.'),);
+          if(vendedores.isEmpty){
+            return const Center(child: Text('Nenhum vendedor cadastrado.'),);
           }
 
           return LayoutBuilder(
