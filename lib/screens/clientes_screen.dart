@@ -37,19 +37,13 @@ class _ClientesScreenState extends State<ClientesScreen>{
     final confirmado = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Adicionar Produto'),
+        title: Text('Adicionar Cliente'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: nomeController,
               decoration: const InputDecoration(labelText: 'Nome'),
-            ),
-            Spacer(flex: 8),
-            TextField(
-              controller: precoController,
-              decoration: const InputDecoration(labelText: 'Preço'),
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
             ),
           ],
         ),
