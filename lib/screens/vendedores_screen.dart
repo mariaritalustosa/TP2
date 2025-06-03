@@ -100,94 +100,25 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
             return const Center(child: Text('Nenhum vendedor cadastrado.'),);
           }
 
-          return LayoutBuilder(
-            builder: (context, constraints){
-              return ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                itemCount: produtos.length,
-                itemBuilder: (context, index){
-                  final produto = produtos[index];
-
-                  return Card(
+          return ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            itemCount: vendedores.length,
+            itemBuilder: (context, index){
+                  final vendedor = vendedores[index];
+                   return Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
-                      title: Text('ID: ${produto.id} - ${produto.nome}'),
-                      subtitle: Text('R\$ ${produto.preco.toStringAsFixed(2)}'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(icon: const Icon(Icons.edit),
-                          onPressed: () async{
-                            final nomeController = TextEditingController(text: produto.nome);
-                            final precoController = TextEditingController(text: produto.preco.toString());
-
-                            final confirmado = await showDialog<bool>(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('Editar informações do produto'),
-                                content: Column(mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: nomeController,
-                                    decoration: const InputDecoration(labelText: 'Nome'),
-                                  ),
-                                  TextField(
-                                    controller: precoController,
-                                    decoration: const InputDecoration(labelText: 'Preço'),
-                                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                  ),
-                                ],
-                                ),
-                                actions: [
-                                  TextButton(onPressed: () => Navigator.pop(context, false),
-                                   child: Text('Cancelar'),
-                                   ),
-                                   ElevatedButton(onPressed: () async{
-                                    final novoNome = nomeController.text;
-                                    final novoPreco = double.tryParse(precoController.text) ?? produto.preco;
-
-                                    final db = Provider.of<AppDatabase>(context, listen: false);
-
-                                    final produtoAtualizado = Produto(id: 
-                                    produto.id,
-                                    nome: novoNome, 
-                                    preco: novoPreco,
-                                    );
-
-                                    await db.updateProduto(produtoAtualizado);
-                                    Navigator.pop(context, true);
-                                   },
-                                   child: Text('Salvar'),
-                                   ),
-                                ],
-                              ),
-                            );
-
-                            if(confirmado == true){
-                              _carregarProdutos();
-                            }
-                          },),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () async{
-                              await database.deleteProduto(produto.id);
-                              _carregarProdutos();
-                            },
-                          ),
-                        ],
-                      ),
+                      title: Text('ID: ${vendedor.id} - Nome: ${vendedor.nome}'),
                     ),
-                  );
-                },
-              );
+                   );
             },
-            );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _adicionarProduto,
-        child: Icon(Icons.add),
-        tooltip: 'Adicionar Produtos',
+          );
+            },
+          ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _adicionarVendedor,
+              child: Icon(Icons.add),
+              tooltip: 'Adicionar Vendedor',
       ),
     );
   }
