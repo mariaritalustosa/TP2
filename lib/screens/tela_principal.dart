@@ -42,7 +42,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
-            ListTile(
+           /** ListTile(
             leading: Icon(Icons.person),
             title: Text('Clientes'),
             onTap: (){
@@ -73,7 +73,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               Navigator.push(context, MaterialPageRoute(builder: (_) => GraficosScreen()),
               );
             },
-          ),
+          ), */
         ],
       ),
     );

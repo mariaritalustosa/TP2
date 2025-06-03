@@ -31,6 +31,40 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
     });
   }
 
+  Future<void> _adicionarProduto() async {
+    final nomeController = TextEditingController();
+    final precoController = TextEditingController();
+
+    final confirmado = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Adicionar Produto'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nomeController,
+              decoration: const InputDecoration(labelText: 'Nome'),
+            ),
+            Spacer(flex: 8),
+            TextField(
+              controller: precoController,
+              decoration: const InputDecoration(labelText: 'Preço'),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: Text('Cancelar'),
+          ),
+          ElevatedButton(
+          onPressed: , child: child)
+        ],
+      ),
+    )
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

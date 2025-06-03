@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      darkTheme: ThemeData.dark(),
+      darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.themeMode,
       home: const TelaPrincipal(),
     );
