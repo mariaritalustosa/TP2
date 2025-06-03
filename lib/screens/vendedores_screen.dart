@@ -9,11 +9,10 @@ class VendedoresScreen extends StatefulWidget {
   const VendedoresScreen({super.key});
 
   @override
-
-State<ProdutosScreen> createState() => _ProdutosScreenState();
+State<VendedoresScreen> createState() => _VendedoresScreenState();
 }
 
-class _ProdutosScreenState extends State<ProdutosScreen>{
+class _VendedoresScreenState extends State<VendedoresScreen>{
 
   late AppDatabase database;
   late Future <List<Produto>> produtosFuture;
