@@ -33,7 +33,6 @@ class _ClientesScreenState extends State<ClientesScreen>{
 
   Future<void> _adicionarCliente() async {
     final nomeController = TextEditingController();
-    final precoController = TextEditingController();
 
     final confirmado = await showDialog<bool>(
       context: context,

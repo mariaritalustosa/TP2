@@ -121,7 +121,7 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
                   return Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
-                      title: Text(produto.nome),
+                      title: Text('ID: ${produto.id} - ${produto.nome}'),
                       subtitle: Text('R\$ ${produto.preco.toStringAsFixed(2)}'),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
