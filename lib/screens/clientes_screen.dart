@@ -10,10 +10,10 @@ class ClientesScreen extends StatefulWidget {
 
   @override
 
-State<ProdutosScreen> createState() => _ProdutosScreenState();
+State<ClientesScreen> createState() => _ClientesScreenState();
 }
 
-class _ProdutosScreenState extends State<ProdutosScreen>{
+class _ClientesScreenState extends State<ClientesScreen>{
 
   late AppDatabase database;
   late Future <List<Produto>> produtosFuture;
