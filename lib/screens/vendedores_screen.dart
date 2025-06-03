@@ -30,26 +30,19 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
     });
   }
 
-  Future<void> _adicionarProduto() async {
+  Future<void> _adicionarVendedor() async {
     final nomeController = TextEditingController();
-    final precoController = TextEditingController();
 
     final confirmado = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Adicionar Produto'),
+        title: Text('Adicionar Vendedor'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: nomeController,
               decoration: const InputDecoration(labelText: 'Nome'),
-            ),
-            Spacer(flex: 8),
-            TextField(
-              controller: precoController,
-              decoration: const InputDecoration(labelText: 'Preço'),
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
             ),
           ],
         ),
@@ -61,13 +54,11 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
           ElevatedButton(
           onPressed: () async{
             final nome = nomeController.text.trim();
-            final preco = double.tryParse(precoController.text.trim()) ?? 0.0;
 
             if(nome.isNotEmpty){
-              await database.insertProduto(
-                ProdutosCompanion(
+              await database.insertVendedor(
+                VendedoresCompanion(
                   nome: drift.Value(nome),
-                  preco: drift.Value(preco),
                 ),
               );
               Navigator.pop(context, true);
@@ -79,7 +70,7 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
       ),
     );
     if(confirmado == true){
-      _carregarProdutos();
+      _carregarVendedores();
     }
   }
   @override

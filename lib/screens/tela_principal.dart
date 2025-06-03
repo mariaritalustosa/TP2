@@ -4,6 +4,7 @@ import 'package:tp2/providers/tela_atual_provider.dart';
 import 'package:tp2/providers/theme_provider.dart';
 import 'package:tp2/screens/produtos_screen.dart';
 import 'clientes_screen.dart';
+import 'vendedores_screen.dart';
 
 class TelaPrincipal extends StatefulWidget{
   const TelaPrincipal({super.key});
@@ -51,7 +52,6 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
-          /** 
           ListTile(
             leading: Icon(Icons.store),
             title: Text('Vendedores'),
@@ -60,6 +60,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
+          /** 
           ListTile(
             leading: Icon(Icons.swap_horiz),
             title: Text('Movimentações'),
@@ -75,7 +76,7 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               Navigator.push(context, MaterialPageRoute(builder: (_) => GraficosScreen()),
               );
             },
-          ), */
+          ), **/
         ],
       ),
     );
