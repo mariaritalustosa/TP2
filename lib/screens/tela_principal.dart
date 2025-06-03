@@ -4,9 +4,14 @@ import 'package:tp2/providers/tela_atual_provider.dart';
 import 'package:tp2/providers/theme_provider.dart';
 import 'package:tp2/screens/produtos_screen.dart';
 
-class TelaPrincipal extends StatelessWidget{
+class TelaPrincipal extends StatefulWidget{
   const TelaPrincipal({super.key});
 
+  @override
+  State<TelaPrincipal> createState() => _TelaPrincipalState(); 
+  }
+
+class _TelaPrincipalState extends State<TelaPrincipal>{
   @override
   Widget build(BuildContext context){
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -57,18 +62,19 @@ class TelaPrincipal extends StatelessWidget{
             leading: Icon(Icons.swap_horiz),
             title: Text('Movimentações'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_) => ClientesScreen()),
+              Navigator.push(context, MaterialPageRoute(builder: (_) => MovimentacoesScreen()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Clientes'),
+            leading: Icon(Icons.bar_chart),
+            title: Text('Gráficos'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_) => ClientesScreen()),
+              Navigator.push(context, MaterialPageRoute(builder: (_) => GraficosScreen()),
               );
             },
           ),
+        ],
       ),
     );
   }
