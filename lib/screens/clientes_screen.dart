@@ -53,15 +53,12 @@ class _ClientesScreenState extends State<ClientesScreen>{
           child: Text('Cancelar'),
           ),
           ElevatedButton(
-          onPressed: () async{
-            final nome = nomeController.text.trim();
-            final preco = double.tryParse(precoController.text.trim()) ?? 0.0;
-
+            onPressed: () async{
+              final nome = nomeController.text.trim();
             if(nome.isNotEmpty){
-              await database.insertProduto(
-                ProdutosCompanion(
+              await database.insertCliente(
+                ClientesCompanion(
                   nome: drift.Value(nome),
-                  preco: drift.Value(preco),
                 ),
               );
               Navigator.pop(context, true);
@@ -73,7 +70,7 @@ class _ClientesScreenState extends State<ClientesScreen>{
       ),
     );
     if(confirmado == true){
-      _carregarProdutos();
+      _carregarClientes();
     }
   }
   @override
