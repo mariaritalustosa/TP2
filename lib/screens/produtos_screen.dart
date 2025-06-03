@@ -60,10 +60,28 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
           child: Text('Cancelar'),
           ),
           ElevatedButton(
-          onPressed: , child: child)
+          onPressed: () async{
+            final nome = nomeController.text.trim();
+            final preco = double.tryParse(precoController.text.trim()) ?? 0.0;
+
+            if(nome.isNotEmpty){
+              await database.insertProduto(
+                ProdutosCompanion(
+                  nome: drift.Value(nome),
+                  preco: drift.Value(preco),
+                ),
+              );
+              Navigator.pop(context, true);
+            }
+          },
+          child: Text('Salvar'),
+          ),
         ],
       ),
-    )
+    );
+    if(confirmado == true){
+      _carregarProdutos();
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -175,7 +193,12 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
             },
             );
         },
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _adicionarProduto,
+        child: Icon(Icons.add),
+        tooltip: 'Adicionar Produtos',
+      ),
     );
   }
 }
