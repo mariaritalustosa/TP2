@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTheme{
-  static final primaryColor = Colors.blue.shade800;
-  static final accentColor = Colors.orangeAccent;
+  static final primaryColor = const Color.fromARGB(255, 3, 31, 63);
+  static final accentColor = const Color.fromARGB(255, 59, 35, 58);
 
   static final inputDecoration = InputDecoration(
     border: OutlineInputBorder(),
@@ -38,5 +38,14 @@ class AppTheme{
       ),
       labelStyle: TextStyle(color: primaryColor),
     ),
+  );
+
+  static final buttonTheme = FloatingActionButtonThemeData(
+    backgroundColor: primaryColor,
+    foregroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+    elevation: 6,
   );
 }
