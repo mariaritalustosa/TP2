@@ -18,4 +18,13 @@ class MovimentacoesScreen extends StatefulWidget{
 class _MovimentacoesScreenState extends State<MovimentacoesScreen>{
   final _formKey = GlobalKey<FormState>();
   final _tipoController = TextEditingController();
+  final _quantidadeController = TextEditingController();
+
+  void _adicionarMovimentacao(AppDatabase db) async{
+    if(_formKey.currentState!.validate()){
+      final novaMovimentacao = MovimentacoesCompanion.insert(
+        tipo: _tipoController.text,
+        quantidade: quantidade, data: data, produtoId: produtoId)
+    }
+  }
 }  
