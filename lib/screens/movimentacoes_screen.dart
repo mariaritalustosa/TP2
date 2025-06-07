@@ -11,4 +11,11 @@ class MovimentacoesScreen extends StatefulWidget{
     required this.produtoId,
     required this.produtoNome,
   });
+
+  @override
+  State<MovimentacoesScreen> createState() => _MovimentacoesScreenState();
 }
+class _MovimentacoesScreenState extends State<MovimentacoesScreen>{
+  final _formKey = GlobalKey<FormState>();
+  final _tipoController = TextEditingController();
+}  
