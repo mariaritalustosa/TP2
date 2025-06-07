@@ -23,6 +23,7 @@ class AppTheme{
       ),
       labelStyle: TextStyle(color: primaryColor),
     ),
+    floatingActionButtonTheme: buttonTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -38,13 +39,14 @@ class AppTheme{
       ),
       labelStyle: TextStyle(color: primaryColor),
     ),
+    floatingActionButtonTheme: buttonTheme,
   );
 
   static final buttonTheme = FloatingActionButtonThemeData(
     backgroundColor: primaryColor,
     foregroundColor: Colors.white,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(50),
     ),
     elevation: 6,
   );
