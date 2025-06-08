@@ -20,7 +20,7 @@ void main() {
       dispose: (_, db) => db.close(),
     ),
   ],
-    child: const MyApp(),
+    child: MyApp(),
   ),
   );
 }

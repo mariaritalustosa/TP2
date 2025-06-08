@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tp2/database/app_database.dart';
+import 'package:tp2/models/movimentacoes_viewmodel.dart';
 import 'package:tp2/providers/tela_atual_provider.dart';
 import 'package:tp2/providers/theme_provider.dart';
 import 'package:tp2/screens/produtos_screen.dart';
 import 'clientes_screen.dart';
 import 'vendedores_screen.dart';
+import 'movimentacoes_screen.dart';
 
 class TelaPrincipal extends StatefulWidget{
   const TelaPrincipal({super.key});
@@ -60,15 +63,19 @@ class _TelaPrincipalState extends State<TelaPrincipal>{
               );
             },
           ),
-          /** 
           ListTile(
             leading: Icon(Icons.swap_horiz),
             title: Text('Movimentações'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_) => MovimentacoesScreen()),
+              Navigator.push(context, MaterialPageRoute(builder: (_) => ChangeNotifierProvider(
+                create: (context) => MovimentacoesViewModel(AppDatabase()),
+                child: MovimentacoesScreen(),
+              ),
+              ),
               );
             },
           ),
+          /** 
           ListTile(
             leading: Icon(Icons.bar_chart),
             title: Text('Gráficos'),
