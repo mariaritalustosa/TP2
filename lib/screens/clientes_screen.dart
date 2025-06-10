@@ -37,7 +37,7 @@ class _ClientesScreenState extends State<ClientesScreen>{
     final confirmado = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Adicionar Cliente'),
+        title: Text('Adicionar Cliente', style: Theme.of(context).textTheme.titleMedium,),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -55,15 +55,24 @@ class _ClientesScreenState extends State<ClientesScreen>{
           ElevatedButton(
             onPressed: () async{
               final nome = nomeController.text.trim();
-            if(nome.isNotEmpty){
+            if(nome.length < 5){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('O nome deve ter pelo menos 5 caracteres')),
+                );
+                return;
+            }
+            try{
               await database.insertCliente(
-                ClientesCompanion(
-                  nome: drift.Value(nome),
-                ),
+                ClientesCompanion(nome: drift.Value(nome)),
               );
               Navigator.pop(context, true);
+            } catch(e){
+              print('Erro ao inserir cliente: $e');
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Erro ao inserir cliente')),
+              );
             }
-          },
+            },
           child: Text('Salvar'),
           ),
         ],

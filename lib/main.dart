@@ -14,7 +14,6 @@ void main() {
     MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => TelaAtualProvider()),
     ChangeNotifierProvider(create: (_) => ThemeProvider()),
-
     Provider<AppDatabase>(
       create: (_) => database,
       dispose: (_, db) => db.close(),
