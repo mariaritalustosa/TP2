@@ -9,8 +9,7 @@ class ClientesScreen extends StatefulWidget {
   const ClientesScreen({super.key});
 
   @override
-
-State<ClientesScreen> createState() => _ClientesScreenState();
+  State<ClientesScreen> createState() => _ClientesScreenState();
 }
 
 class _ClientesScreenState extends State<ClientesScreen>{
@@ -87,7 +86,7 @@ class _ClientesScreenState extends State<ClientesScreen>{
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).appBarTheme.iconTheme?.color),
           onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);
           }
         ),

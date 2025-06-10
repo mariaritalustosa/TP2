@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme{
-  static final primaryColor = const Color.fromARGB(255, 3, 31, 63);
-  static final accentColor = const Color.fromARGB(255, 129, 66, 126);
-  static const lightBackground = Color(0xFFF5F5F5);
-  static const darkBackground = Color(0xFF121212);
+  static final primaryColor = const Color(0xFF6A1B9A);
+  static final accentColor = const Color(0xFFF48FB1);
+  static const lightBackground = Color(0xFFF7F2FA);
+  static const darkBackground = Color(0xFF21003D);
 
    static final buttonTheme = FloatingActionButtonThemeData(
     backgroundColor: primaryColor,
@@ -24,10 +25,10 @@ class AppTheme{
   );
 
   static final textTheme = TextTheme(
-    headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: primaryColor),
-    titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: primaryColor),
-    bodyMedium: TextStyle(fontSize: 16, color: Colors.black87),
-    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: primaryColor),
+    headlineLarge: GoogleFonts.poppins(fontSize: 24, color: primaryColor),
+    titleMedium: GoogleFonts.poppins(fontSize: 18, color: primaryColor),
+    bodyMedium: GoogleFonts.poppins(fontSize: 16, color: primaryColor),
+    labelLarge: GoogleFonts.poppins(fontSize: 14, color: primaryColor),
   );
   
   static ThemeData lightTheme = ThemeData(
