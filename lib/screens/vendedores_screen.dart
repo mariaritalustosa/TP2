@@ -77,6 +77,8 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Vendedores'),
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);

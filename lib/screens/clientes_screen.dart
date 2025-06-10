@@ -90,7 +90,8 @@ class _ClientesScreenState extends State<ClientesScreen>{
           onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);
           }
         ),
-        title: Text('Clientes'),
+        title: Text('Clientes', style: Theme.of(context).appBarTheme.titleTextStyle),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: FutureBuilder<List<Cliente>>(
         future: clientesFuture,
@@ -117,7 +118,8 @@ class _ClientesScreenState extends State<ClientesScreen>{
                   return Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
-                      title: Text('ID: ${cliente.id} - ${cliente.nome}'),
+                      title: Text('ID: ${cliente.id} - ${cliente.nome}',
+                      style: Theme.of(context).textTheme.bodyMedium),
                     ),
                   );
             },

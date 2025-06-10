@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tp2/database/app_database.dart';
 import 'package:drift/drift.dart' as drift;
 import 'package:tp2/screens/tela_principal.dart';
+import 'package:tp2/themes/themes.dart';
 
 
 class ProdutosScreen extends StatefulWidget {
@@ -44,12 +45,12 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
           children: [
             TextField(
               controller: nomeController,
-              decoration: const InputDecoration(labelText: 'Nome'),
+              decoration: AppTheme.inputDecoration.copyWith(labelText: 'Nome'),
             ),
-            Spacer(flex: 8),
+            const SizedBox(height: 3),
             TextField(
               controller: precoController,
-              decoration: const InputDecoration(labelText: 'Preço'),
+              decoration: AppTheme.inputDecoration.copyWith(labelText: 'Preço'),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
             ),
           ],
@@ -87,6 +88,8 @@ class _ProdutosScreenState extends State<ProdutosScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Produtos'),
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TelaPrincipal()),);
