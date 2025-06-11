@@ -175,7 +175,7 @@ class _MovimentacoesScreenState extends State<MovimentacoesScreen> {
                   child: ListTile(
                     leading: Icon(
                       m.tipo == 'entrada' ? Icons.call_received : Icons.call_made,
-                      color: m.tipo == 'entrada' ? Colors.green : Colors.red,
+                      color: m.tipo == 'entrada' ? Color.fromARGB(255, 42, 109, 44) : Color.fromARGB(255, 114, 22, 15),
                     ),
                     title: Text(m.nomeProduto),
                     subtitle: Column(

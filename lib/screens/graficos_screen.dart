@@ -52,13 +52,13 @@ class _GraficosScreenState extends State<GraficosScreen> {
                     barRods: [
                       BarChartRodData(
                         toY: entrada,
-                        color: Colors.green,
+                        color: const Color.fromARGB(255, 42, 109, 44),
                         width: 10,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       BarChartRodData(
                         toY: saida,
-                        color: Colors.red,
+                        color: const Color.fromARGB(255, 114, 22, 15),
                         width: 10,
                         borderRadius: BorderRadius.circular(4),
                       ),

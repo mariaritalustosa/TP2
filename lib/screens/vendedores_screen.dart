@@ -111,12 +111,37 @@ class _VendedoresScreenState extends State<VendedoresScreen>{
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ListTile(
                       title: Text('ID: ${vendedor.id} - Nome: ${vendedor.nome}'),
+                      trailing: IconButton(
+                       icon: const Icon(Icons.delete),
+                       onPressed: () async{
+                        final confirmado = await showDialog<bool>(context: context,
+                         builder: (context) => AlertDialog(
+                          title: const Text('Confirmar a exclusão'),
+                          content: Text('Tem certeza que deseja excluir o vendedor "${vendedor.nome}"?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                               child: const Text('Cancelar'),
+                               ),
+                               ElevatedButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                 child: const Text('Excluir'),
+                                 ),
+                                ],
+                              ),
+                            );
+                            if (confirmado ==true){
+                              await database.deleteVendedor(vendedor.id);
+                              _carregarVendedores();
+                        }
+                      },
                     ),
-                   );
-            },
-          );
-            },
-          ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
             floatingActionButton: FloatingActionButton(
               onPressed: _adicionarVendedor,
               child: Icon(Icons.add),
